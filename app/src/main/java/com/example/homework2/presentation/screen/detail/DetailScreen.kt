@@ -1,5 +1,6 @@
 package com.example.homework2.presentation.screen.detail
 
+import androidx.compose.foundation.background
 import coil.compose.AsyncImage
 import com.example.homework2.presentation.ui.custom.CustomTheme
 import androidx.compose.foundation.clickable
@@ -94,41 +95,47 @@ fun MainContent(
 @Composable
 private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
     Spacer(modifier = Modifier.height(4.dp))
-    Card(
+    Column(
         modifier = Modifier
-            .padding(8.dp)
             .fillMaxWidth()
-            .verticalScroll(rememberScrollState()),
-        backgroundColor = CustomTheme.colors.secondaryBackground,
-    )
-    {
-        AsyncImage(
-            model = detailModel.image!!,
-            contentDescription = null,
-            contentScale = ContentScale.FillWidth,
+            .padding(8.dp)
+            .background(
+                color = CustomTheme.colors.secondaryBackground,
+            )
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
+        Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(400.dp),
+                .padding(8.dp)
+                .fillMaxWidth(),
+            backgroundColor = CustomTheme.colors.secondaryBackground,
         )
-        Spacer(
-            modifier = Modifier.height(8.dp)
+        {
+            AsyncImage(
+                model = detailModel.image!!,
+                contentDescription = null,
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(400.dp),
+            )
+        }
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = detailModel.title!!,
+            style = CustomTheme.typography.body,
+            color = CustomTheme.colors.primaryText,
+            fontSize = 24.sp
         )
-        Column(
-            modifier = Modifier.padding(8.dp)
-        ) {
-            Text(
-                text = detailModel.title!!,
-                style = CustomTheme.typography.body,
-                color = CustomTheme.colors.primaryText,
-                fontSize = 24.sp
-            )
-            Text(
-                text = detailModel.year!!,
-                style = CustomTheme.typography.body,
-                color = CustomTheme.colors.primaryText,
-                fontSize = 20.sp
-            )
-            Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = detailModel.year!!,
+            style = CustomTheme.typography.body,
+            color = CustomTheme.colors.primaryText,
+            fontSize = 20.sp
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        if (detailModel.genres != null) {
             Row {
                 Text(
                     text = "Genres: ",
@@ -136,7 +143,7 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                     textAlign = TextAlign.Start
                 )
                 Text(
-                    text = detailModel.genres!!,
+                    text = detailModel.genres,
                     color = CustomTheme.colors.secondaryText,
                     modifier = Modifier
                         .clickable {
@@ -145,6 +152,8 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                         .alignByBaseline()
                 )
             }
+        }
+        if (detailModel.countries != null) {
             Row {
                 Text(
                     text = "Countries: ",
@@ -152,7 +161,7 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                     textAlign = TextAlign.Start
                 )
                 Text(
-                    text = detailModel.countries!!,
+                    text = detailModel.countries,
                     color = CustomTheme.colors.secondaryText,
                     modifier = Modifier
                         .clickable {
@@ -161,6 +170,8 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                         .alignByBaseline()
                 )
             }
+        }
+        if (detailModel.companies != null) {
             Row {
                 Text(
                     text = "Companies: ",
@@ -168,7 +179,7 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                     textAlign = TextAlign.Start
                 )
                 Text(
-                    text = detailModel.companies!!,
+                    text = detailModel.companies,
                     color = CustomTheme.colors.secondaryText,
                     modifier = Modifier
                         .clickable {
@@ -177,6 +188,8 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                         .alignByBaseline()
                 )
             }
+        }
+        if (detailModel.directors != null) {
             Row {
                 Text(
                     text = "Director: ",
@@ -184,7 +197,7 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                     textAlign = TextAlign.Start
                 )
                 Text(
-                    text = detailModel.directors!!,
+                    text = detailModel.directors,
                     color = CustomTheme.colors.secondaryText,
                     modifier = Modifier
                         .clickable {
@@ -193,6 +206,8 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                         .alignByBaseline()
                 )
             }
+        }
+        if (detailModel.time != null) {
             Row {
                 Text(
                     text = "Time: ",
@@ -200,7 +215,7 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                     textAlign = TextAlign.Start
                 )
                 Text(
-                    text = detailModel.time!!,
+                    text = detailModel.time,
                     color = CustomTheme.colors.secondaryText,
                     modifier = Modifier
                         .clickable {
@@ -209,6 +224,8 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                         .alignByBaseline()
                 )
             }
+        }
+        if (detailModel.imdb != null) {
             Row {
                 Text(
                     text = "IMDB rating: ",
@@ -216,7 +233,7 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                     textAlign = TextAlign.Start
                 )
                 Text(
-                    text = detailModel.imdb!!,
+                    text = detailModel.imdb,
                     color = CustomTheme.colors.secondaryText,
                     modifier = Modifier
                         .clickable {
@@ -225,6 +242,8 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                         .alignByBaseline()
                 )
             }
+        }
+        if (detailModel.worldMoney != null) {
             Row {
                 Text(
                     text = "World fees: ",
@@ -232,7 +251,7 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                     textAlign = TextAlign.Start
                 )
                 Text(
-                    text = detailModel.worldMoney!!,
+                    text = detailModel.worldMoney,
                     color = CustomTheme.colors.secondaryText,
                     modifier = Modifier
                         .clickable {
@@ -241,12 +260,12 @@ private fun FilmDetails(detailModel: DetailModel, onItemClick: () -> Unit) {
                         .alignByBaseline()
                 )
             }
-            Spacer(modifier = Modifier.height(7.dp))
-            Text(
-                text = detailModel.description!!,
-                style = CustomTheme.typography.body,
-                color = CustomTheme.colors.secondaryText
-            )
         }
+        Spacer(modifier = Modifier.height(7.dp))
+        Text(
+            text = detailModel.description!!,
+            style = CustomTheme.typography.body,
+            color = CustomTheme.colors.secondaryText
+        )
     }
 }
